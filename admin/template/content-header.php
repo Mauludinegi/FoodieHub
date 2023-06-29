@@ -27,6 +27,12 @@
                 case 'products':
                     include "products/content-header.php";
                     break;
+                case 'header':
+                    include "header/content-header.php";
+                    break;
+                case 'about':
+                    include "about/content-header.php";
+                    break;
                 default:
                     echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
                     break;

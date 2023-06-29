@@ -32,7 +32,7 @@ $page = $_GET['page']; ?>
           <a href="<?= $base_url ?>/dashboard.php?page=home" class="nav-link  <?php if ($page == 'home') { ?>active<?php } ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-              Beranda
+              Dashboard
             </p>
           </a>
         </li>
@@ -49,7 +49,7 @@ $page = $_GET['page']; ?>
             class="nav-link  <?php if ($page == 'customers') { ?>active<?php } ?>">
             <i class="nav-icon fas fa-users"></i>
             <p>
-              customers
+              Customers
             </p>
           </a>
         </li>
@@ -58,7 +58,7 @@ $page = $_GET['page']; ?>
             class="nav-link  <?php if ($page == 'categories') { ?>active<?php } ?>">
             <i class="nav-icon fas fa-tags"></i>
             <p>
-              categories
+              Categories
             </p>
           </a>
         </li>
@@ -66,7 +66,7 @@ $page = $_GET['page']; ?>
           <a href="<?= $base_url ?>/dashboard.php?page=products" class="nav-link  <?php if ($page == 'products') { ?>active<?php } ?>">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              products
+              Products
             </p>
           </a>
         </li>
@@ -74,7 +74,7 @@ $page = $_GET['page']; ?>
           <a href="<?= $base_url ?>/dashboard.php?page=article" class="nav-link  <?php if ($page == 'article') { ?>active<?php } ?>">
           <i class="nav-icon fas fa-newspaper"></i>
           <p>
-              article
+              Article
             </p>
           </a>
         </li>
@@ -82,7 +82,23 @@ $page = $_GET['page']; ?>
           <a href="<?= $base_url ?>/dashboard.php?page=orders" class="nav-link  <?php if ($page == 'orders') { ?>active<?php } ?>">
           <i class="nav-icon fas fa-address-card"></i>
           <p>
-              order
+              Order
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= $base_url ?>/dashboard.php?page=header" class="nav-link  <?php if ($page == 'header') { ?>active<?php } ?>">
+          <i class="nav-icon fas fa-address-card"></i>
+          <p>
+              Header
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= $base_url ?>/dashboard.php?page=about" class="nav-link  <?php if ($page == 'about') { ?>active<?php } ?>">
+          <i class="nav-icon fas fa-address-card"></i>
+          <p>
+              About
             </p>
           </a>
         </li>

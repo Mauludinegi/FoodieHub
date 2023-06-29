@@ -4,10 +4,10 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 if (isset($_SESSION['username'])) {
-    header("Location: ../home/index.php");
+    header("Location: ./front/home/index.php");
 }
 if (isset($_POST['submit'])) {
-    include("../../config.php");
+    include("config.php");
     $email = @$_POST['email'];
     $password = md5(@$_POST['pass']);
 
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['username'] = $row['username'];
         $_SESSION['foto'] = $row['foto'];
         $_SESSION['id'] = $row['id'];
-        header("Location: ../home/index.php");
+        header("Location: ./front/home/index.php");
     } else {
 		echo "<script>alert('Email atau Password salah')</script>";
 	}
@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--=========================www.material design iconic font========================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="front\login & register\css\main.css">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
 					</span>
 				
 					<div class="wrap-input validate-input" data-validate = "Valid email is: a@email.c">
-						<input class="input" type="text" name="email" autocomplete="off">
+						<input class="input" type="text" name="email" autocomplete="off" required>
 						<span class="focus-input" data-placeholder="Email"></span>
 					</div>
 
@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-						<input class="input" type="password" name="pass">
+						<input class="input" type="password" name="pass" required>
 						<span class="focus-input" data-placeholder="Password"></span>
 					</div>
 

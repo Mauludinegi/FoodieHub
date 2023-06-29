@@ -3,7 +3,7 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 if (isset($_POST['submit'])) {
-    include("../../config.php");
+    include("config.php");
     $email = @$_POST['email'];
     $username = @$_POST['username'];
     $name = @$_POST['name'];
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--=========================www.material design iconic font========================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="front\login & register\css\main.css">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -84,9 +84,9 @@ if (isset($_POST['submit'])) {
 	</div>
 	
 
-<script src="js/jquery-3.2.1.min.js"></script>
+<script src="front/login & register/js/jquery-3.2.1.min.js"></script>
 
-<script src="js/main.js"></script>
+<script src="front/login & register/js/main.js"></script>
 
 
 

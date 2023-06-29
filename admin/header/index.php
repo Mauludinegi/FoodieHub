@@ -1,6 +1,5 @@
 <?php
 include_once("../config.php");
-include_once('template/navbar.php');
 ?>
 <!-- Main content -->
 <div class="row">
@@ -8,7 +7,7 @@ include_once('template/navbar.php');
     </div>
     <div class="card-tools d-flex justify-content-between align-items-center">
         <div class="input-group input-group-sm" style="width: 150px;">
-            <form class="form-inline" method="post" style="display: flex; justify-content: flex-start;">
+            <form class="form-inline" method="post">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Search"
                         aria-label="Search" name="search" autocomplete="off">
@@ -22,7 +21,8 @@ include_once('template/navbar.php');
         </div>
 
         <!-- This will cause the card to maximize when clicked -->
-        
+        <a href='header/create.php?page=header' class="btn btn-info ml-2"><i class="fas fa-plus"></i>
+            Tambah Header</a>
     </div>
     <div style="clear:both"></div>
     <hr />
@@ -31,12 +31,7 @@ include_once('template/navbar.php');
             <thead>
                 <tr>
                     <th style="text-align:center;">#</th>
-                    <th style="text-align:center;">Nama Barang</th>
-                    <th style="text-align:center">Kategori</th>
-                    <th style="text-align:center">Harga</th>
-                    <th style="text-align:center">Jumlah</th>
-                    <th style="text-align:center;">Total</th>
-                    <th style="text-align:center;">Pembeli</th>
+                    <th style="text-align:center;">Nama Header</th>
                     <th width="200px" style="text-align:center;">Opsi</th>
                 </tr>
             </thead>
@@ -50,21 +45,14 @@ include_once('template/navbar.php');
                     $no = 1;
                 }
                 $start = ($hlm - 1) * 5;
+
+                // $result = mysqli_query($mysqli, "SELECT * FROM categories LIMIT $start,5");
                 $result = null;
                 if (isset($_POST['submit'])) {
                     $search = $_POST['search'];
-                    $result = mysqli_query($mysqli, "SELECT orders.*, products.`name` as products_name, categories.`name` as categories_name, customers.username as customers_name FROM orders
-                    INNER JOIN products ON orders.`id_product` = products.`id`
-                    INNER JOIN categories ON orders.`id_categories` = categories.`id`
-                    INNER JOIN customers ON orders.`id_customer` = customers.`id`
-                            where products.name = '$search' || categories.name = '$search' || customers.username = '$search'
-                            ORDER BY id DESC");
+                    $result = mysqli_query($mysqli, "SELECT * FROM header where name = '$search' ORDER BY id DESC");
                 } else if ($result == null) {
-                    $result = mysqli_query($mysqli, "SELECT orders.*, products.`name` as products_name, categories.`name` as categories_name, customers.username as customers_name FROM orders
-                    INNER JOIN products ON orders.`id_product` = products.`id`
-                    INNER JOIN categories ON orders.`id_categories` = categories.`id`
-                    INNER JOIN customers ON orders.`id_customer` = customers.`id`
-                    ORDER BY id DESC LIMIT $start, 5");
+                    $result = mysqli_query($mysqli, "SELECT * FROM header ORDER BY id DESC LIMIT $start, 5");
                 } else {
                     echo "<script>alert(data tidak ada);</script>";
                 }
@@ -77,26 +65,12 @@ include_once('template/navbar.php');
                                 <?php echo $no++; ?>
                             </td>
                             <td style="text-align:center;vertical-align:middle;">
-                                <?php echo $data['products_name']; ?>
-                            </td>
-                            <td style="text-align:center;vertical-align:middle;">
-                                <?php echo $data['categories_name']; ?>
-                            </td>
-                            <td style="text-align:center;vertical-align:middle;">
-                                <?php echo $data['price']; ?>
-                            </td>
-                            <td style="text-align:center;vertical-align:middle;">
-                                <?php echo $data['quantity']; ?>
-                            </td>
-                            <td style="text-align:center;vertical-align:middle;">
-                                <?php echo $data['total']; ?>
-                            </td>
-                            <td style="text-align:center;vertical-align:middle;">
-                                <?php echo $data['customers_name']; ?>
+                                <?php echo $data['name']; ?>
                             </td>
                             <td>
-                                <a class="btn btn-danger" style="text-align:center;vertical-align:middle;" onclick='return confirmDelete()'
-                                    href='orders/delete.php?id=<?= $data['id'] ?>&page=orders'>Hapus</a>
+                                <a class="btn btn-success" href='header/edit.php?id=<?= $data['id'] ?>&page=header'>Edit</a>
+                                <a class="btn btn-danger" onclick='return confirmDelete()'
+                                    href='header/delete.php?id=<?= $data['id'] ?>&page=header'>Hapus</a>
                             </td>
                         </tr>
                         <?php
@@ -115,7 +89,7 @@ include_once('template/navbar.php');
             $hlmn = $hlm - 1;
             ?>
             <li class="paginate_button page-item previous">
-                <a href="?page=orders&hlm=<?php echo $hlmn; ?>" aria-label="Previous" class="page-link">
+                <a href="?page=header&hlm=<?php echo $hlmn; ?>" aria-label="Previous" class="page-link">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
@@ -123,7 +97,7 @@ include_once('template/navbar.php');
             <?php
         }
 
-        $hitung = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM orders"));
+        $hitung = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM header"));
         $total = ceil($hitung / 5);
         for ($i = 1; $i <= $total; $i++) {
             ?>
@@ -132,23 +106,25 @@ include_once('template/navbar.php');
             } else {
                 echo 'class="paginate_button page-item"';
             } ?>>
-                <a href="?page=orders&hlm=<?php echo $i; ?>" class="page-link">
+                <a href="?page=header&hlm=<?php echo $i; ?>" class="page-link">
                     <?php echo $i; ?>
                 </a>
             </li>
             <?php
         }
+
         if ($hlm < $total) {
             $next = $hlm + 1;
             ?>
             <li class="paginate_button page-item next">
-                <a href="?page=orders&hlm=<?php echo $next; ?>" aria-label="Next" class="page-link">
+                <a href="?page=header&hlm=<?php echo $next; ?>" aria-label="Next" class="page-link">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>
             </li>
             <?php
         }
+
         echo '</ul>';
         ?>
     </div>
