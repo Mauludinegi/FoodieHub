@@ -21,9 +21,10 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 20px 153px 5px;
+  padding: 20px 50px 10px;
   z-index: 999;
   background-color: #f7f7f7;
+  width: 100%;
 }
 
 .logo {

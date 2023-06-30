@@ -4,19 +4,29 @@ include("../../config.php");
 $user_check = $_SESSION['username'];
 $sql = "SELECT username FROM customers WHERE username='$user_check'";
 $result = mysqli_query($mysqli, $sql);
-if ($result->num_rows ==  0) {
-    header("Location: ../index.php");
+if ($result->num_rows == 0) {
+  header("Location: ../../index.php");
 }
 $header = mysqli_query($mysqli, "select * from header");
-$menu = mysqli_query($mysqli, "select id, name, description, price, quantity, cover, id_category from products where quantity > 0 order by id desc");
 $popular = mysqli_query($mysqli, "select * from products where quantity > 0 order by id desc limit 4");
-$count = mysqli_num_rows($menu);
+$menu = null;
 $about = mysqli_query($mysqli, "select * from about");
 $article = mysqli_query($mysqli, "SELECT article.*, 
                                   admin.username as name
                                   from article
                                   INNER JOIN admin ON article.id_admin = admin.id
 ");
+
+$search = null;
+if (isset($_POST['submit'])) {
+  $search = $_POST['search'];
+  $menu = mysqli_query($mysqli, "select id, name, description, price, quantity, cover, id_category from products where quantity > 0 and name='$search' order by id desc");
+} else if (isset($_POST['reset'])) {
+  $menu = mysqli_query($mysqli, "SELECT id, name, description, price, quantity, cover, id_category FROM products WHERE quantity > 0 ORDER BY id DESC");
+} else {
+  $menu = mysqli_query($mysqli, "select id, name, description, price, quantity, cover, id_category from products where quantity > 0 order by id desc");
+}
+$count = mysqli_num_rows($menu);
 ?>
 
 <!DOCTYPE html>
@@ -27,43 +37,58 @@ $article = mysqli_query($mysqli, "SELECT article.*,
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FoodieHub</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Menyembunyikan ikon "x" pada input tipe pencarian */
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
   <!-- Navbar Start -->
-  <nav class="navbar">
-    <div class="logo">
-      <div class="group">
-        <div class="layer-2">
-          <div class="objects">
-            <a href="#Home" style="text-decoration: none;">
-            <div class="foodie-hub">FoodieHub</div>
-            <img class="logo-icon" src="img/logo.png" alt="Logo" width="46" height="47">
-            </a>
+  <nav>
+    <div class="navbar">
+      <div class="logo">
+        <div class="group">
+          <div class="layer-2">
+            <div class="objects">
+              <a href="#Home" style="text-decoration: none;">
+                <div class="foodie-hub">FoodieHub</div>
+                <img class="logo-icon" src="img/logo.png" alt="Logo" width="46" height="47">
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="navbar-right">
-      <div class="subnavbar-right">
-        <?php while ($row = mysqli_fetch_assoc($header)) { ?>
-          <a href="#<?= $row['name']; ?>" class="header"><?= $row['name']; ?></a>
-        <?php } ?>
-      </div>
-      <div class="navbar-left-icon">
-        <form method="post" action="#">
-          <div class="subnavbar-left-icon">
-            <input type="search" class="search-input" placeholder="Search product...">
-            <button type="submit" name="submit" style="all: unset;">
-              <img src="img/search.png" alt="Search Icon" class="search-icon" />
-            </button>
-          </div>
-        </form>
-        <div class="cart">
-          <a href="../keranjang/index.html"><img src="img/keranjang.png" alt="Keranjang Icon" class="cart-icon" /></a>
+      <div class="navbar-right">
+        <div class="subnavbar-right">
+          <?php while ($row = mysqli_fetch_assoc($header)) { ?>
+            <a href="#<?= $row['name']; ?>" class="header"><?= $row['name']; ?></a>
+          <?php } ?>
         </div>
-        <div class="cart">
-          <a href="../../signout.php"><img src="img/logout.png" alt="User Icon" class="cart-icon" /></a>
+        <div class="navbar-left-icon">
+          <form method="post" action="#Menu">
+            <div class="subnavbar-left-icon">
+              <input type="search" class="search-input" placeholder="Search product..." id="search" autocomplete="off"
+                name="search" value="<?= $search; ?>">
+              <button type="submit" name="submit" style="border: none; background: none; cursor: pointer;">
+                <img src="img/search.png" alt="Search Icon" class="search-icon" />
+              </button>
+              <button type="submit" name="reset" style="cursor: pointer; background: none; border: none;">
+                <img src="img/close.png" alt="reset">
+              </button>
+            </div>
+          </form>
+          <div class="cart">
+            <a href="../keranjang/index.html"><img src="img/keranjang.png" alt="Keranjang Icon" class="cart-icon" /></a>
+          </div>
+          <div class="cart">
+            <a href="../../signout.php"><img src="img/logout.png" alt="User Icon" class="cart-icon" /></a>
+          </div>
         </div>
       </div>
     </div>
@@ -147,48 +172,64 @@ $article = mysqli_query($mysqli, "SELECT article.*,
       <div class="frame-18">
         <?php
         $count = 0;
-        while ($row = mysqli_fetch_assoc($menu)) {
-          if ($count % 3 == 0) {
-            echo '<div class="frame-16">';
-          }
-          ?>
+        if (mysqli_num_rows($menu) > 0) {
+          while ($row = mysqli_fetch_assoc($menu)) {
+            if ($count % 3 == 0) {
+              echo '<div class="frame-16">';
+            }
+            ?>
 
-          <div class="frame-17">
-            <img class="img-menu" src="../../admin/products/img/<?php echo $row['cover']; ?>" />
-            <div class="frame-10">
-              <div class="frame-8">
-                <div class="header-menu-product">
-                  <?php echo $row['name']; ?>
+            <div class="frame-17">
+              <img class="img-menu" src="../../admin/products/img/<?php echo $row['cover']; ?>" />
+              <div class="frame-10">
+                <div class="frame-8">
+                  <div class="header-menu-product">
+                    <?php echo $row['name']; ?>
+                  </div>
+                  <div class="description-product-menu">
+                    <?php echo $row['description']; ?>
+                  </div>
+                  <div class="menu-price">
+                    <div class="harga">Harga</div>
+                    <div class="currency">
+                      <?php echo "Rp " . $row['price']; ?>
+                    </div>
+                  </div>
+                  <div class="menu-price">
+                    <div class="harga">Stok</div>
+                    <div class="currency">
+                      <?php echo " " . $row['quantity']; ?>
+                    </div>
+                  </div>
                 </div>
-                <div class="description-product-menu">
-                  <?php echo $row['description']; ?>
-                </div>
-              </div>
-              <div class="frame-9">
-                <div class="frame-7">
-                  <a href="../pay/index.php?id=<?= $row['id'] ?>" style="text-decoration: none;">
-                    <div class="order-now-menu">Order Now</div>
-                  </a>
-                </div>
-                <div class="frame-6">
-                  <a href="../keranjang/index.php" style="text-decoration: none;">
-                    <div class="add-to-cart">Add to Cart</div>
-                  </a>
+                <div class="frame-9">
+                  <div class="frame-7">
+                    <a href="../pay/index.php?id=<?= $row['id'] ?>" style="text-decoration: none;">
+                      <div class="order-now-menu">Order Now</div>
+                    </a>
+                  </div>
+                  <div class="frame-6">
+                    <a href="../keranjang/index.php" style="text-decoration: none;">
+                      <div class="add-to-cart">Add to Cart</div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <?php
-          $count++;
-          if ($count % 3 == 0) {
+            <?php
+            $count++;
+            if ($count % 3 == 0) {
+              echo '</div>';
+            }
+          }
+
+          if ($count % 3 != 0) {
             echo '</div>';
           }
-        }
-
-        if ($count % 3 != 0) {
-          echo '</div>';
-        }
+        } else { ?>
+          <h1 style="text-align: center;"> Menu tidak ditemukan</h1>
+       <?php }
         ?>
       </div>
     </div>
@@ -200,10 +241,12 @@ $article = mysqli_query($mysqli, "SELECT article.*,
   <!-- About -->
   <div class="popular" id="About Us">
     <div class="popular-now">
-      <span class="popular-now-span">About</span>
+      <span class="popular-now-span" style="text-align: center;">About</span>
       <span class="popular-now-span3">Us</span>
     </div>
-    <?php while ($row = mysqli_fetch_assoc($about)) { ?>
+
+    <?php while ($row = mysqli_fetch_assoc($about)) {
+      ?>
       <div class="frame-60">
         <img class="img-about" src="../../admin/about/img/<?= $row['cover']; ?>" />
         <div class="frame-59">
@@ -323,9 +366,9 @@ $article = mysqli_query($mysqli, "SELECT article.*,
         <div class="footer-heading-text">F O O D I E H U B</div>
         <div class="footer-list-sm">
           <a href="https://facebook.com" target="_blank"><img src="img/facebook.png" alt=""></a>
-          <a href="twitter.com" target="_blank"><img src="img/twitter.png" alt=""></a>
-          <a href="instagram.com" target="_blank"><img src="img/instagram.png" alt=""></a>
-          <a href="linkedln.com" target="_blank"><img src="img/linkedln.png" alt=""></a>
+          <a href="https://twitter.com" target="_blank"><img src="img/twitter.png" alt=""></a>
+          <a href="https://instagram.com" target="_blank"><img src="img/instagram.png" alt=""></a>
+          <a href="https://linkedln.com" target="_blank"><img src="img/linkedln.png" alt=""></a>
         </div>
       </div>
       <div class="footer-list-support">
@@ -367,6 +410,16 @@ $article = mysqli_query($mysqli, "SELECT article.*,
       </div>
     </div>
   </div>
+
+  <script>
+    var searchInput = document.getElementById('search');
+    searchInput.addEventListener('keyup', function (event) {
+      if (event.keyCode === 13) {
+        document.getElementById('menu').scrollIntoView();
+      }
+    });
+  </script>
+
 </body>
 
 </html>
