@@ -86,7 +86,7 @@ $page = $_GET['page']; ?>
         <li class="nav-item">
           <a href="<?= $base_url ?>/dashboard.php?page=orders"
             class="nav-link  <?php if ($page == 'orders') { ?>active<?php } ?>">
-            <i class="nav-icon fas fa-address-card"></i>
+            <i class="fas fa-shopping-cart nav-icon"></i>
             <p>
               Order
             </p>
@@ -95,7 +95,7 @@ $page = $_GET['page']; ?>
         <li class="nav-item">
           <a href="<?= $base_url ?>/dashboard.php?page=header"
             class="nav-link  <?php if ($page == 'header') { ?>active<?php } ?>">
-            <i class="nav-icon fas fa-address-card"></i>
+            <i class="nav-icon fas fa-heading"></i>
             <p>
               Header
             </p>
@@ -104,7 +104,7 @@ $page = $_GET['page']; ?>
         <li class="nav-item">
           <a href="<?= $base_url ?>/dashboard.php?page=media"
             class="nav-link  <?php if ($page == 'media') { ?>active<?php } ?>">
-            <i class="nav-icon fas fa-address-card"></i>
+            <i class="nav-icon fab fa-youtube"></i>
             <p>
               Media
             </p>
@@ -113,7 +113,7 @@ $page = $_GET['page']; ?>
         <li class="nav-item">
           <a href="<?= $base_url ?>/dashboard.php?page=footer"
             class="nav-link  <?php if ($page == 'footer') { ?>active<?php } ?>">
-            <i class="nav-icon fas fa-address-card"></i>
+            <i class="fas fa-info-circle nav-icon"></i>
             <p>
               Footer
             </p>
