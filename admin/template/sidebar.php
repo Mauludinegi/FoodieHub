@@ -13,7 +13,8 @@ $page = $_GET['page']; ?>
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="<?= $base_url ?>/admin/img/<?= isset($_SESSION['foto']) ? $_SESSION['foto'] : 'foto'; ?>" class="img-circle elevation-2" alt="User Image">
+        <img src="<?= $base_url ?>/admin/img/<?= isset($_SESSION['foto']) ? $_SESSION['foto'] : 'foto'; ?>"
+          class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
         <a href="#" class="d-block">
@@ -29,7 +30,8 @@ $page = $_GET['page']; ?>
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="<?= $base_url ?>/dashboard.php?page=home" class="nav-link  <?php if ($page == 'home') { ?>active<?php } ?>">
+          <a href="<?= $base_url ?>/dashboard.php?page=home"
+            class="nav-link  <?php if ($page == 'home') { ?>active<?php } ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -37,7 +39,8 @@ $page = $_GET['page']; ?>
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= $base_url ?>/dashboard.php?page=admin" class="nav-link <?php if ($page == 'admin') { ?>active<?php } ?>">
+          <a href="<?= $base_url ?>/dashboard.php?page=admin"
+            class="nav-link <?php if ($page == 'admin') { ?>active<?php } ?>">
             <i class="nav-icon fas fa-users"></i>
             <p>
               Admin
@@ -63,7 +66,8 @@ $page = $_GET['page']; ?>
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= $base_url ?>/dashboard.php?page=products" class="nav-link  <?php if ($page == 'products') { ?>active<?php } ?>">
+          <a href="<?= $base_url ?>/dashboard.php?page=products"
+            class="nav-link  <?php if ($page == 'products') { ?>active<?php } ?>">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Products
@@ -71,33 +75,55 @@ $page = $_GET['page']; ?>
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= $base_url ?>/dashboard.php?page=article" class="nav-link  <?php if ($page == 'article') { ?>active<?php } ?>">
-          <i class="nav-icon fas fa-newspaper"></i>
-          <p>
+          <a href="<?= $base_url ?>/dashboard.php?page=article"
+            class="nav-link  <?php if ($page == 'article') { ?>active<?php } ?>">
+            <i class="nav-icon fas fa-newspaper"></i>
+            <p>
               Article
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= $base_url ?>/dashboard.php?page=orders" class="nav-link  <?php if ($page == 'orders') { ?>active<?php } ?>">
-          <i class="nav-icon fas fa-address-card"></i>
-          <p>
+          <a href="<?= $base_url ?>/dashboard.php?page=orders"
+            class="nav-link  <?php if ($page == 'orders') { ?>active<?php } ?>">
+            <i class="nav-icon fas fa-address-card"></i>
+            <p>
               Order
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= $base_url ?>/dashboard.php?page=header" class="nav-link  <?php if ($page == 'header') { ?>active<?php } ?>">
-          <i class="nav-icon fas fa-address-card"></i>
-          <p>
+          <a href="<?= $base_url ?>/dashboard.php?page=header"
+            class="nav-link  <?php if ($page == 'header') { ?>active<?php } ?>">
+            <i class="nav-icon fas fa-address-card"></i>
+            <p>
               Header
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= $base_url ?>/dashboard.php?page=about" class="nav-link  <?php if ($page == 'about') { ?>active<?php } ?>">
-          <i class="nav-icon fas fa-address-card"></i>
-          <p>
+          <a href="<?= $base_url ?>/dashboard.php?page=media"
+            class="nav-link  <?php if ($page == 'media') { ?>active<?php } ?>">
+            <i class="nav-icon fas fa-address-card"></i>
+            <p>
+              Media
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= $base_url ?>/dashboard.php?page=footer"
+            class="nav-link  <?php if ($page == 'footer') { ?>active<?php } ?>">
+            <i class="nav-icon fas fa-address-card"></i>
+            <p>
+              Footer
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= $base_url ?>/dashboard.php?page=about"
+            class="nav-link  <?php if ($page == 'about') { ?>active<?php } ?>">
+            <i class="nav-icon fas fa-address-card"></i>
+            <p>
               About
             </p>
           </a>

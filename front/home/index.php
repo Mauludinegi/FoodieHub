@@ -16,7 +16,8 @@ $article = mysqli_query($mysqli, "SELECT article.*,
                                   from article
                                   INNER JOIN admin ON article.id_admin = admin.id
 ");
-
+$media = mysqli_query($mysqli, "select * from media");
+$info = mysqli_query($mysqli, "select * from footer order by id desc");
 $search = null;
 if (isset($_POST['submit'])) {
   $search = $_POST['search'];
@@ -365,10 +366,9 @@ $count = mysqli_num_rows($menu);
       <div class="footer-heading-wrap">
         <div class="footer-heading-text">F O O D I E H U B</div>
         <div class="footer-list-sm">
-          <a href="https://facebook.com" target="_blank"><img src="img/facebook.png" alt=""></a>
-          <a href="https://twitter.com" target="_blank"><img src="img/twitter.png" alt=""></a>
-          <a href="https://instagram.com" target="_blank"><img src="img/instagram.png" alt=""></a>
-          <a href="https://linkedln.com" target="_blank"><img src="img/linkedln.png" alt=""></a>
+          <?php while ($row = mysqli_fetch_assoc($media)) { ?>
+          <a href="https://<?= $row['name']; ?>.com" target="_blank"><img src="../../admin/media/img/<?= $row['icon']; ?>" alt=""></a>
+        <?php } ?>
         </div>
       </div>
       <div class="footer-list-support">
@@ -384,10 +384,9 @@ $count = mysqli_num_rows($menu);
         <div class="footer-list">
           <div class="heading-list">Info</div>
           <div class="wrap-list">
-            <div class="list">Date</div>
-            <div class="list">Parties</div>
-            <div class="list">Birthdays</div>
-            <div class="list">Menu</div>
+            <?php while ($row = mysqli_fetch_assoc($info)) { ?>
+            <div class="list"><?= $row['name']; ?></div>
+         <?php } ?>
           </div>
         </div>
         <div class="footer-list">

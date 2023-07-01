@@ -15,6 +15,8 @@ $article = mysqli_query($mysqli, "SELECT article.*,
                                   from article
                                   INNER JOIN admin ON article.id_admin = admin.id where article.id = $id
 ");
+$media = mysqli_query($mysqli, "select * from media");
+$info = mysqli_query($mysqli, "select * from footer order by id desc");
 ?>
 
 <!DOCTYPE html>
@@ -95,20 +97,21 @@ $article = mysqli_query($mysqli, "SELECT article.*,
       <div class="footer-heading-wrap">
         <div class="footer-heading-text">F O O D I E H U B</div>
         <div class="footer-list-sm">
-          <a href="https://facebook.com" target="_blank"><img src="../home/img/facebook.png" alt=""></a>
-          <a href="https://twitter.com" target="_blank"><img src="../home/img/twitter.png" alt=""></a>
-          <a href="https://instagram.com" target="_blank"><img src="../home/img/instagram.png" alt=""></a>
-          <a href="https://linkedin.com" target="_blank"><img src="../home/img/linkedln.png" alt=""></a>
+          <?php while ($row = mysqli_fetch_assoc($media)) { ?>
+            <a href="https://<?= $row['name']; ?>.com" target="_blank"><img
+                src="../../admin/media/img/<?= $row['icon']; ?>" alt=""></a>
+          <?php } ?>
         </div>
       </div>
       <div class="footer-list-support">
         <div class="footer-list">
           <div class="heading-list">Support</div>
           <div class="wrap-list">
-            <div class="list">Faq</div>
-            <div class="list">Shipping &amp; Returns</div>
-            <div class="list">Contact Us</div>
-            <div class="list">Our Partners</div>
+            <?php while ($row = mysqli_fetch_assoc($info)) { ?>
+              <div class="list">
+                <?= $row['name']; ?>
+              </div>
+            <?php } ?>
           </div>
         </div>
         <div class="footer-list">
