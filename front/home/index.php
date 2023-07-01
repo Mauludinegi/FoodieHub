@@ -108,8 +108,7 @@ $count = mysqli_num_rows($menu);
 
       <div
         class="lorem-ipsum-dolor-sit-amet-consectetur-tellus-mauris-consequat-in-eget-id-amet-in-lacus-nunc-integer-dignissim-neque-turpis">
-        Lorem ipsum dolor sit amet consectetur. Tellus mauris consequat in eget.
-        Id amet in lacus nunc integer dignissim neque turpis.
+        Mari kita bersama-sama menjelajahi dunia rasa yang tak terbatas, merasakan setiap sentuhan cita rasa, dan memperkaya hidup kita dengan pengalaman kuliner yang tak terlupakan.
       </div>
 
       <a href="#Menu">
