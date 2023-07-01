@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: #EDEDED;
+    overflow-x: hidden;
+  }
+  
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    gap: 92px;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 50px 10px;
+    z-index: 999;
+    background-color: #f7f7f7;
+    width: 100%;
+  }
+  
+  .logo {
+    flex-shrink: 0;
+    width: 152px;
+    height: 61px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .group {
+    position: absolute;
+    inset: 0;
+  }
+  
+  .layer-2 {
+    width: 171.43px;
+    height: 45.93px;
+    position: static;
+  }
+  
+  .objects {
+    width: 171.43px;
+    height: 45.93px;
+    position: static;
+  }
+  
+  .foodie-hub {
+    color: var(--basic-black, #000000);
+    text-align: left;
+    font: 700 16.29px/22.81px "Open Sans", sans-serif;
+    position: absolute;
+    left: calc(50% - 18.94px);
+    top: 20.04px;
+    width: 118.94px;
+    height: 29.33px;
+  }
+  
+  .logo-icon {
+    position: absolute;
+    left: 4.57px;
+    top: 9.45px;
+    overflow: visible;
+  }
+  
+  .navbar-right {
+    display: flex;
+    flex-direction: row;
+    gap: 109px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .subnavbar-right {
+    display: flex;
+    flex-direction: row;
+    gap: 42px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .subnavbar-right a {
+    color: inherit;
+    text-decoration: none;
+    text-align: left;
+    font: var(--opensans-bold-label, 700 14px/22px "Open Sans", sans-serif);
+    position: relative;
+  }
+  
+  .header:hover {
+    color: #35b233;
+  }
+  
+  .header-Home {
+    color: #35b233;
+  }
+  
+  .navbar-left-icon {
+    padding: 0px 10px 0px 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 46px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 466px;
+    position: relative;
+  }
+  
+  .subnavbar-left-icon {
+    display: flex;
+    align-items: center;
+    border-radius: 28px;
+    border-style: solid;
+    border-color: var(--gray-dark, #323232);
+    border-width: 1px;
+    padding: 14px;
+  }
+  
+  .search-input {
+    flex: 1;
+    border: none;
+    background: none;
+    color: var(--gray-medium, #969696);
+    text-align: left;
+    font: var(--opensans-regular-p, 400 16px/24px "Open Sans", sans-serif);
+    outline: none;
+    width: 300px;
+    height: 14px;
+  }
+  
+  .search-icon {
+    width: 27px;
+    height: 27px;
+    margin-left: 8px;
+  }
+  
+  .cart {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cart-icon {
+    position: absolute;
+    left: 3.01px;
+    top: 2px;
+    overflow: visible;
+    width: 18px;
+    height: 20px;
+  }
+  
+  /* Payment */
+  
+  
+  
+  .payment-method {
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    align-content: center;
+  }
+  
+  .payment-method-span {
+    font-family: open sans;
+  }
+  
+  
+  .payment-method-span3 {
+    color: #35B233;
+    margin-left: 20px;
+    font-family: open sans;
+  }
+  
+  .payment-method1 {
+    width: 582px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  
+  /* Footer */
+  
+  .footer {
+    position: relative;
+    inset: 0;
+  
+  }
+  
+  .background-footer {
+    background: var(--cool-greenhover, #35b233);
+    width: 100%;
+    height: 407px;
+    position: absolute;
+    left: 0px;
+    top: 147px;
+  }
+  
+  .footer-heading {
+    display: flex;
+    flex-direction: row;
+    gap: 314px;
+    align-items: center;
+    justify-content: flex-start;
+    width: 1136px;
+    position: absolute;
+    left: 152px;
+    top: 240px;
+  }
+  
+  .footer-heading-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 24.02px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 272.19px;
+    position: relative;
+  }
+  
+  .footer-heading-text {
+    color: var(--basic-white, #ffffff);
+    text-align: left;
+    font: 700 32px/40.03px "Open Sans", sans-serif;
+    position: relative;
+  }
+  
+  .footer-list-sm {
+    display: flex;
+    flex-direction: row;
+    gap: 60.04px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .footer-list-support {
+    display: flex;
+    flex-direction: row;
+    gap: 97.07px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .footer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32.02px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .heading-list {
+    color: #ffffff;
+    text-align: left;
+    font: 700 20.01px/28.02px "Open Sans", sans-serif;
+    position: relative;
+  }
+  
+  .wrap-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24.02px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .list {
+    color: #ffffff;
+    text-align: left;
+    font: 400 16.01px/24.02px "Open Sans", sans-serif;
+    position: relative;
+  }
+  
+  .contact {
+    color: #ffffff;
+    text-align: left;
+    font: 700 20.01px/28.02px "Open Sans", sans-serif;
+    position: relative;
+  }
+  
+  .wrap-icon-list {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .text-list {
+    color: var(--basic-white, #ffffff);
+    text-align: left;
+    font: 400 14.01px/22.02px "Open Sans", sans-serif;
+    position: relative;
+  }
