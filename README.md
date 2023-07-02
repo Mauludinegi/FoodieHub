@@ -1,13 +1,13 @@
 Website ini dibuat oleh kelompok 3 yang beranggotakan :
 
-Anandaru Fanhash Zahar (Frontend)
+1. Anandaru Fanhash Zahar (Frontend)
 
-Egi Purnama M (Backend)
+2. Egi Purnama M (Backend)
 
-Muhamad Hamdany (Frontend)
+3. Muhamad Hamdany (Frontend)
 
-Rendy (UI/UX)
+4. Rendy (UI/UX)
 
-Wisnu Ranggaadhya Kusumawardhana (Documentation)
+5. Wisnu Ranggaadhya Kusumawardhana (Documentation)
 
 Untuk link websitenya: https://kelompok3-foodiehub.000webhostapp.com/foodiehub/
